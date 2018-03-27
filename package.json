@@ -1,0 +1,36 @@
+{
+  "name": "react-native-send-location-amap",
+  "author": "Enok <416828041@qq.com>",
+  "license": "MIT",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengmu456/react-native-send-location-amap"
+  },
+  "main": "src/index.js",
+  "keywords": [
+    "react-native",
+    "amap",
+    "location",
+    "map"
+  ],
+  "dependencies": {
+    "react": "16.3.0-alpha.1",
+    "react-native": "0.54.3",
+    "react-native-amap3d": "^0.12.1"
+  },
+  "devDependencies": {
+    "babel-jest": "22.4.3",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.4.3",
+    "react-test-renderer": "16.3.0-alpha.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
