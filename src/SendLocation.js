@@ -1,11 +1,11 @@
 import React from "react";
-import {FlatList, Modal, StatusBar, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {MapView, Marker} from "react-native-amap3d";
 
-export default class SendLocation extends React.Component {
+export default class SendLocationView extends React.Component {
 
     static defaultProps = {
-        key: "2bf69c9b4980f0fc915e9b03deed9bb6"
+        apiKey: "2bf69c9b4980f0fc915e9b03deed9bb6"
     };
 
     constructor(props) {
@@ -69,7 +69,7 @@ export default class SendLocation extends React.Component {
     onPress({nativeEvent}) {
         const {longitude, latitude} = nativeEvent;
         this.setState({selectPosition: nativeEvent, pois: []});
-        const url = `http://restapi.amap.com/v3/geocode/regeo?extensions=all&key=${this.props.key}&location=${longitude},${latitude}`;
+        const url = `http://restapi.amap.com/v3/geocode/regeo?extensions=all&key=${this.props.apiKey}&location=${longitude},${latitude}`;
         fetch(url).then(res => res.json()).then(data => {
             let pois = [];
             const map = {};
@@ -98,25 +98,25 @@ export default class SendLocation extends React.Component {
     }
 
     render() {
-        return <Modal visible={true} onRequestClose={this.props.onClose}>
-            <StatusBar hidden={false} translucent={false}/>
-            <View style={{flex: 1}}>
-                {this.renderHeader()}
-                <MapView style={{flex: 1}} locationEnabled={true} onLocation={this.onLocation.bind(this)}
-                         coordinate={this.state.currentPosition} zoomLevel={18}
-                         showsZoomControls={false} showsLocationButton={true}
-                         locationStyle={{fillColor: "transparent", strockeWidth: 0}}
-                         onPress={this.onPress.bind(this)}
-                         rotateEnabled={false} tiltEnabled={false} showsCompass={false}>
-                    <Marker coordinate={this.state.selectPosition} color="red"/>
-                </MapView>
-                <FlatList style={{flex: 1}} data={this.state.pois} renderItem={this.renderItem.bind(this)}/>
-            </View>
-        </Modal>;
+        return <View style={styles.layout}>
+            {this.renderHeader()}
+            <MapView style={{flex: 1}} locationEnabled={true} onLocation={this.onLocation.bind(this)}
+                     coordinate={this.state.currentPosition} zoomLevel={18}
+                     showsZoomControls={false} showsLocationButton={true}
+                     locationStyle={{fillColor: "transparent", strockeWidth: 0}}
+                     onPress={this.onPress.bind(this)}
+                     rotateEnabled={false} tiltEnabled={false} showsCompass={false}>
+                <Marker coordinate={this.state.selectPosition} color="red"/>
+            </MapView>
+            <FlatList style={{flex: 1}} data={this.state.pois} renderItem={this.renderItem.bind(this)}/>
+        </View>;
     }
 }
 
 const styles = StyleSheet.create({
+    layout: {
+        flex: 1, position: "absolute", top: 0, right: 0, left: 0, bottom: 0, backgroundColor: "#fff"
+    },
     header: {
         flexDirection: "row",
         height: 45,
