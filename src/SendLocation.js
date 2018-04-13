@@ -99,16 +99,19 @@ export default class SendLocationView extends React.Component {
 
     render() {
         return <View style={styles.layout}>
-            {this.renderHeader()}
-            <MapView style={{flex: 1}} locationEnabled={true} onLocation={this.onLocation.bind(this)}
-                     coordinate={this.state.currentPosition} zoomLevel={18}
-                     showsZoomControls={false} showsLocationButton={true}
-                     locationStyle={{fillColor: "transparent", strockeWidth: 0}}
-                     onPress={this.onPress.bind(this)}
-                     rotateEnabled={false} tiltEnabled={false} showsCompass={false}>
-                <Marker coordinate={this.state.selectPosition} color="red"/>
-            </MapView>
-            <FlatList style={{flex: 1}} data={this.state.pois} renderItem={this.renderItem.bind(this)}/>
+            <View style={{flex: 1}}>
+                {this.renderHeader()}
+                <MapView style={{flex: 1}} locationEnabled={true} onLocation={this.onLocation.bind(this)}
+                         coordinate={this.state.currentPosition} zoomLevel={18}
+                         showsZoomControls={false} showsLocationButton={true}
+                         locationStyle={{fillColor: "transparent", strockeWidth: 0}}
+                         onPress={this.onPress.bind(this)}
+                         rotateEnabled={false} tiltEnabled={false} showsCompass={false}>
+                    <Marker coordinate={this.state.selectPosition} color="red"/>
+                </MapView>
+                <FlatList style={{flex: 1, backgroundColor: "#fff"}} data={this.state.pois}
+                          renderItem={this.renderItem.bind(this)}/>
+            </View>
         </View>;
     }
 }

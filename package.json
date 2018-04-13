@@ -2,7 +2,7 @@
   "name": "react-native-send-location-amap",
   "author": "Enok <416828041@qq.com>",
   "license": "MIT",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "private": false,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
